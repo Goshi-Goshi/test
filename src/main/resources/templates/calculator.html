@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>電卓</title>
+</head>
+
+<body>
+    <h1>電卓</h1>
+    <form action="/calculate" method="post">
+        //java側のPostマッピングに対応
+        // actionはPostMapping()にデータを送信
+        // methodはPost(URLでデータが見えないので少し安全)で送信することを指定
+        <input type="number" name="num1" placeholder="数値1" required>
+        // type="number"は数値入力を指定
+        // nameはコントローラーで受け取る際のキー 
+        // placeholderは入力欄のヒント
+        // requiredは必須入力を指定
+        
+        <select name="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" name="num2" placeholder="数値2" required>
+        <button type="submit">計算</button>
+        <div>
+            <p>計算結果：<span th:text="${result}">---</span></p>
+            //th:textはThymeleafの属性で、${result}はコントローラーから渡された計算結果を表示
+        </div>
+    </form>
+</body>
+
+</html>
